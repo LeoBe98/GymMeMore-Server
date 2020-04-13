@@ -24,10 +24,11 @@ public class UserDao {
                 String email = resultSet.getString("email");
                 String name = resultSet.getString("name");
                 String lastName = resultSet.getString("lastname");
+                String password = resultSet.getString("password");
                 String birthDate = resultSet.getString("birthdate");
                 int type = resultSet.getInt("type");
 
-                user = new UserDto(id, email, name, lastName, birthDate, type);
+                user = new UserDto(id, email, name, lastName, password, birthDate, type);
 
             }
             resultSet.close();
