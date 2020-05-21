@@ -73,6 +73,9 @@ public class Login {
         user=getUser(email);
 
         if(user!=null){
+            System.out.println(user.getHashedPassword());
+            System.out.println(password);
+
             if(checkPassword(password,user.getHashedPassword())){
                 jsonResult.addProperty("state", 1);
                 jsonResult.addProperty("id", user.getId());
