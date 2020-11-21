@@ -18,19 +18,19 @@ import javax.swing.plaf.nimbus.State;
 
 public class Login {
 
-    protected static UserDto getUser(String userEmail){
-        UserDto user=null;
+    protected static UserDto getUser(String userEmail) {
+        UserDto user = null;
         Connection connection = Database.getDbConnection();
 
         ResultSet resultSet;
 
         try {
-            String sql = "SELECT * FROM public.users WHERE email='"+ userEmail +"';";
+            String sql = "SELECT * FROM public.users WHERE email='" + userEmail + "';";
             Statement statement = connection.createStatement();
 
-            resultSet= statement.executeQuery(sql);
+            resultSet = statement.executeQuery(sql);
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
 
                 int id = resultSet.getInt("id");
                 String email = resultSet.getString("email");
@@ -40,7 +40,7 @@ public class Login {
                 String hashedPassword = resultSet.getString("password");
                 int type = resultSet.getInt("type");
 
-                user = new UserDto(id,email,name,lastName, hashedPassword, birthDate,type);
+                user = new UserDto(id, email, name, lastName, hashedPassword, birthDate, type);
 
 
             }
@@ -60,37 +60,37 @@ public class Login {
     }
 
 
-    protected static boolean checkPassword (String password, String hashedPassword){
-        return BCrypt.checkpw(password,hashedPassword);
+    protected static boolean checkPassword(String password, String hashedPassword) {
+        return BCrypt.checkpw(password, hashedPassword);
     }
 
 
-    public static JsonObject login (String email, String password){
+    public static JsonObject login(String email, String password) {
 
         JsonObject jsonResult = new JsonObject();
-        jsonResult.addProperty("state",0);
+        jsonResult.addProperty("state", 0);
         UserDto user = null;
-        user=getUser(email);
+        user = getUser(email);
 
-        if(user!=null){
+        if (user != null) {
             System.out.println(user.getHashedPassword());
             System.out.println(password);
 
-            if(checkPassword(password,user.getHashedPassword())){
+            if (checkPassword(password, user.getHashedPassword())) {
                 jsonResult.addProperty("state", 1);
                 jsonResult.addProperty("id", user.getId());
                 jsonResult.addProperty("name", user.getName());
                 jsonResult.addProperty("lastName", user.getLastname());
-                jsonResult.addProperty("email", user. getEmail());
+                jsonResult.addProperty("email", user.getEmail());
                 jsonResult.addProperty("birthDate", user.getBirthDate());
                 jsonResult.addProperty("type", user.getType());
                 return jsonResult;
             } else {
-                jsonResult.addProperty("state",2);
+                jsonResult.addProperty("state", 2);
                 return jsonResult;
             }
         }
-            return jsonResult;
+        return jsonResult;
     }
 
 

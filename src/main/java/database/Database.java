@@ -8,7 +8,7 @@ public class Database {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.postgresql.Driver";
-    static final String DB_URL = "jdbc:postgresql://localhost:5432/GymMeMoreDB";
+    static final String DB_URL = "jdbc:postgresql://localhost:5432/prova_sync_db";
 
     //  Database credentials
     static final String USER = "postgres";

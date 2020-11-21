@@ -1,23 +1,18 @@
 package datatype.dto;
 
-public class UserDto {
+public class GymDto {
 
     private int id;
     private String email;
     private String name;
     private String lastname;
-    private String hashedPassword;
-    private String birthDate;
-    private int type;
 
-    public UserDto(int id, String email, String name, String lastname, String hashedPassword, String birthDate, int type) {
+
+    public GymDto(int id, String name, String address) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.lastname = lastname;
-        this.hashedPassword = hashedPassword;
-        this.birthDate = birthDate;
-        this.type = type;
 
     }
 
@@ -53,15 +48,5 @@ public class UserDto {
         this.lastname = lastname;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
 
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public int getType() {
-        return type;
-    }
 }
